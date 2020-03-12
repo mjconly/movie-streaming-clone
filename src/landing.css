@@ -1,0 +1,103 @@
+/* landing main */
+.landing-main{
+  width: 100vw;
+  height: 100vh;
+}
+
+/* landing container */
+body{
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image:linear-gradient( rgba(0, 0, 0, .1), rgba(0, 0, 0, 1) ),
+  url("./images/jeff-pierre-unsplash.jpg");
+  position: relative;
+
+}
+
+/* login form */
+.landing-container{
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+}
+
+.form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+label{
+  color: white;
+  opacity: .5;
+  font-family: 'Indie Flower', cursive;
+}
+
+h3{
+  color: white;
+  opacity: .5;
+  font-family: 'Indie Flower', cursive;
+  font-size: 2em;
+}
+
+.login-field{
+  width: 250px;
+}
+
+input{
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: white !important;
+  opacity: .8;
+  font-family: 'Indie Flower', cursive;
+}
+
+input:focus{
+  /* box-shadow: 0 3px 3px #c04df9 !important;
+  border-color: white !important; */
+  border-color: white !important;
+  box-shadow: none !important;
+  background-color: rgba(0, 0, 0, .5) !important;
+}
+
+input:active{
+  border-color: solid 1px white !important;
+  box-shadow: none !important;
+  background-color: rgba(0, 0, 0, .5) !important;
+}
+
+
+input:empty{
+  border-color: solid 1px white !important;
+  box-shadow: none !important;
+}
+
+.form-border{
+  padding: 10px;
+}
+
+.form-submit{
+  width: 250px;
+  height: 45px;
+  border-radius: 5px 5px 5px 5px;
+  background-color: rgba(0,0,0, 0);
+  opacity: .7;
+  color: white;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.5em;
+}
+
+.form-submit:hover{
+  /* box-shadow: 0 3px 3px #c04df9 !important; */
+  border-color: white !important;
+  opacity: .8;
+  background-color: rgba(0,0,0,.5);
+  cursor: pointer;
+}
+
+.form-submit:active{
+  transform: translateY(2px);
+  outline:none;
+}
