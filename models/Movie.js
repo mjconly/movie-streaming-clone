@@ -6,13 +6,13 @@ const MovieSchema = new mongoose.Schema({
   director: String,
   writers: [String],
   cast: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Actor"
   }],
   runtime: String,
   genre: [String],
   reviews: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Review"
   }]
 })
