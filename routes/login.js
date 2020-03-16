@@ -9,7 +9,7 @@ require("dotenv").config();
 
 let User = require("../models/User");
 
-router.post("/", (req, res) => {
+router.post("/signin", (req, res) => {
   const {email, password} = req.body;
 
   User.findOne({email: email}, (err, user) => {
@@ -24,6 +24,7 @@ router.post("/", (req, res) => {
             process.env.ACCESS_TOKEN,
             {expiresIn: 7200}, (err, token) =>{
               if (err) throw err;
+              console.log(token);
               res.json({
                 token: token,
                 user: user
