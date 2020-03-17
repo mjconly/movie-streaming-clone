@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const MovieSchema = new mongoose.Schema({
   title: String,
   description: String,
-  director: String,
+  director: [String],
   writers: [String],
   cast: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Actor"
   }],
   runtime: String,
-  genre: [String],
+  genres: [String],
   reviews: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Review"

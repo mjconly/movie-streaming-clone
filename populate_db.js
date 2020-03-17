@@ -16,172 +16,141 @@ const p1 = /\[*\]*/gi;
 const p2 = /, /gi;
 const p3 = /'(.*?)'/gi;
 
-const data_objects_array = []
+async function populate(mongoose, data){
+  mongoose.connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  }, async (res, err) => {
+    for (let j = 0; j < data.length; j++){
+      const {title, description, director, writers, cast, runtime, genres} = data[j];
 
+      const actors_new_to_db = [];
+      const actors_for_movie = []
+      let currActor = [];
 
-csv()
-  .fromFile(csv_path)
-  .then((json) => {
-    let count = 1;
-    for (obj of json){
-      const title = obj.title;
-      const description = obj.description;
-      const director = [];
-      const writers = [];
-      const cast = [];
-      const runtime = obj.runtime;
-      const genres = [];
-
-      //parse directors out
-      let dir = obj.director;
-      dir = dir.replace(p1, "");
-      dir = dir.replace(p2, "");
-      for (let name of dir.split(p3)){
-        if (name !== ""){
-          director.push(name);
-        }
-      }
-
-      //parse writers out
-      let writer = obj.writers;
-      writer = writer.replace(p1, "");
-      writer = writer.replace(p2, "");
-      for (let name of writer.split(p3)){
-        if (name !== ""){
-          writers.push(name);
-        }
-      }
-
-      //parse genres out
-      let genre = obj.genre;
-      genre = genre.replace(p1, "");
-      genre = genre.replace(p2, "");
-      for (let name of genre.split(p3)){
-        if (name !== ""){
-          genres.push(name);
-        }
-      }
-
-      //parse cast out
-      let actors = obj.cast;
-      actors = actors.replace(p1, "");
-      actors = actors.replace(p2, "");
-      for (let name of actors.split(p3)){
-        if (name !== "" && name.length > 2){
-          if (name === "\"Lupita Nyong"){
-            cast.push("Lupita Nyong'o")
+      for (let i = 0; i < cast.length; i++){
+        currActor.push(cast[i]);
+        if (i % 2 !== 0){
+          let newActor = await Actor.findOne({name: currActor[0]});
+          if (newActor === null){
+            newActor = Actor({
+              name: currActor[0],
+              profile_pic: currActor[1]
+            })
+            actors_new_to_db.push(newActor);
           }
-          else{
-            cast.push(name);
-          }
+          actors_for_movie.push(newActor);
+          currActor = [];
         }
       }
 
-      const data_object = {
+      await Actor.insertMany(actors_new_to_db);
+
+      console.log("added actors");
+
+      let newMovie = Movie({
         title,
         description,
         director,
         writers,
+        cast: actors_for_movie,
         runtime,
-        genres,
-        cast
+        genres
+      })
+
+      newMovie.save()
+        .then(() => console.log(`${title} added to db`))
+        .catch(err => console.log(err));
+
+      }
+    })
+    .then(() => {
+      console.log("DONE!")
+      mongoose.connection.close();
+      process.exit();
+    });
+  }
+
+
+
+
+async function buildData(){
+  csv()
+    .fromFile(csv_path)
+    .then((json) => {
+      const data_objects_array = []
+      let count = 1;
+      for (obj of json){
+        const title = obj.title;
+        const description = obj.description;
+        const director = [];
+        const writers = [];
+        const cast = [];
+        const runtime = obj.runtime;
+        const genres = [];
+
+        //parse directors out
+        let dir = obj.director;
+        dir = dir.replace(p1, "");
+        dir = dir.replace(p2, "");
+        for (let name of dir.split(p3)){
+          if (name !== ""){
+            director.push(name);
+          }
+        }
+
+        //parse writers out
+        let writer = obj.writers;
+        writer = writer.replace(p1, "");
+        writer = writer.replace(p2, "");
+        for (let name of writer.split(p3)){
+          if (name !== ""){
+            writers.push(name);
+          }
+        }
+
+        //parse genres out
+        let genre = obj.genre;
+        genre = genre.replace(p1, "");
+        genre = genre.replace(p2, "");
+        for (let name of genre.split(p3)){
+          if (name !== ""){
+            genres.push(name);
+          }
+        }
+
+        //parse cast out
+        let actors = obj.cast;
+        actors = actors.replace(p1, "");
+        actors = actors.replace(p2, "");
+        for (let name of actors.split(p3)){
+          if (name !== "" && name.length > 2){
+            if (name === "\"Lupita Nyong"){
+              cast.push("Lupita Nyong'o")
+            }
+            else{
+              cast.push(name);
+            }
+          }
+        }
+
+        const data_object = {
+          title,
+          description,
+          director,
+          writers,
+          runtime,
+          genres,
+          cast
+        }
+
+        data_objects_array.push(data_object);
       }
 
-      data_objects_array.push(data_object);
+      populate(mongoose, data_objects_array);
 
-    }
+    })
+}
 
-    console.log(data_objects_array)
-
-    process.exit();
-
-  })
-
-
-
-
-// mongoose.connect(DB, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useCreateIndex: true
-// }, (err, db) => {
-//   if (err) throw err;
-//
-//   csv()
-//     .fromFile(csv_path)
-//     .then((json) => {
-//       let count = 1;
-//       for (obj of json){
-//         const title = obj.title;
-//         const description = obj.description;
-//         const director = [];
-//         const writers = [];
-//         const cast = [];
-//         const runtime = obj.runtime;
-//         const genres = [];
-//
-//         //parse directors out
-//         let dir = obj.director;
-//         dir = dir.replace(p1, "");
-//         dir = dir.replace(p2, "");
-//         for (let name of dir.split(p3)){
-//           if (name !== ""){
-//             director.push(name);
-//           }
-//         }
-//
-//         //parse writers out
-//         let writer = obj.writers;
-//         writer = writer.replace(p1, "");
-//         writer = writer.replace(p2, "");
-//         for (let name of writer.split(p3)){
-//           if (name !== ""){
-//             writers.push(name);
-//           }
-//         }
-//
-//         //parse genres out
-//         let genre = obj.genre;
-//         genre = genre.replace(p1, "");
-//         genre = genre.replace(p2, "");
-//         for (let name of genre.split(p3)){
-//           if (name !== ""){
-//             genres.push(name);
-//           }
-//         }
-//
-//         //parse cast out
-//         let actors = obj.cast;
-//         actors = actors.replace(p1, "");
-//         actors = actors.replace(p2, "");
-//         for (let name of actors.split(p3)){
-//           if (name !== "" && name.length > 2){
-//             if (name === "\"Lupita Nyong"){
-//               cast.push("Lupita Nyong'o")
-//             }
-//             else{
-//               cast.push(name);
-//             }
-//           }
-//         }
-//
-//         const data_object = {
-//           title,
-//           description,
-//           director,
-//           writers,
-//           runtime,
-//           genres,
-//           cast
-//         }
-//         console.log(data_object);
-//       }
-//
-//     })
-//
-// })
-
-// let words = str.replace(/\[*\]*/gi, "");
-// words = words.replace(/, /gi, "")
-// console.log(words);
-// console.log(words.split(/'(.*?)'/gi));
+buildData();

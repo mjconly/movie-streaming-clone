@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const ActorSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true
+  },
   profile_pic: String
 })
 
