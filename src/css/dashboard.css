@@ -1,0 +1,35 @@
+.dashboard-main{
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0,0,0);
+}
+
+/* Error messages from server  */
+.error-response-dash{
+  color: white;
+  opacity: .5;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  color:#ff3f3f;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+
+.error-box-dash{
+  display: flex;
+  flex-direction: column;
+  width:400px;
+  background: rgba(255,255,255,.1);
+  border-radius: 5px;
+  font-size: 1.5em;
+}
+
+
+/* movie shelf display */
+
+.movie-shelf{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
