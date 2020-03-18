@@ -24,10 +24,9 @@ router.post("/signin", (req, res) => {
             process.env.ACCESS_TOKEN,
             {expiresIn: 7200}, (err, token) =>{
               if (err) throw err;
-              console.log(token);
               res.json({
                 token: token,
-                user: user
+                id: user.id,
               })
             }
           )
@@ -45,8 +44,6 @@ router.post("/signin", (req, res) => {
 })
 
 
-router.get("/dashboard", auth, (req, res) => {
-  res.send("DASHBOARD")
-})
+
 
 module.exports = router;

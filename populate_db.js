@@ -23,7 +23,7 @@ async function populate(mongoose, data){
     useCreateIndex: true
   }, async (res, err) => {
     for (let j = 0; j < data.length; j++){
-      const {title, description, director, writers, cast, runtime, genres} = data[j];
+      const {title, poster, description, director, writers, cast, runtime, genres} = data[j];
 
       const actors_new_to_db = [];
       const actors_for_movie = []
@@ -51,6 +51,7 @@ async function populate(mongoose, data){
 
       let newMovie = Movie({
         title,
+        poster,
         description,
         director,
         writers,
@@ -66,14 +67,21 @@ async function populate(mongoose, data){
       }
     })
     .then(() => {
-      console.log("DONE!")
-      mongoose.connection.close();
-      process.exit();
+      close_connection(mongoose);
     });
   }
 
 
+function sleep(ms){
+  return new Promise(resolve => {setTimeout(resolve, ms)});
+}
 
+async function close_connection(mongoose){
+  await sleep(10000);
+  console.log("db updated ... closing connection");
+  mongoose.connection.close();
+  process.exit();
+}
 
 async function buildData(){
   csv()
@@ -83,6 +91,7 @@ async function buildData(){
       let count = 1;
       for (obj of json){
         const title = obj.title;
+        const poster = obj.poster;
         const description = obj.description;
         const director = [];
         const writers = [];
@@ -137,6 +146,7 @@ async function buildData(){
 
         const data_object = {
           title,
+          poster,
           description,
           director,
           writers,

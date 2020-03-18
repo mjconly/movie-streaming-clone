@@ -23,6 +23,7 @@ mongoose.connect(DB, {
 
 app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
+app.use("/dashboard", require("./routes/dashboard"));
 
 app.listen(PORT, (req, res) => {
   console.log(`Server listening on port ${PORT}`);

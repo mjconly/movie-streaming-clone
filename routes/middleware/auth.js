@@ -15,7 +15,7 @@ const auth = (req, res, next) => {
     next();
   }
   catch(e){
-    res.status(400).json("Bad request");
+    res.status(400).json("Bad Request");
   }
 }
 
