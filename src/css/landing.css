@@ -5,7 +5,9 @@
 }
 
 /* landing container */
-body{
+.body{
+  width: 100vw;
+  height: 100vh;
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;

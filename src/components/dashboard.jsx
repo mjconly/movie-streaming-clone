@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navbar from "./navbar";
 import axios from "axios";
 import "../css/dashboard.css";
 
@@ -19,17 +20,17 @@ class Dashboard extends Component{
       error_status: null,
       error_response: "",
       username: "",
-      movies: []
+      movies: [],
     }
   }
 
 componentDidMount(){
-    const curr_state = this.props.location.state;
     document.body.style.backgroundColor = "black";
     document.body.style.backgroundImage = "none";
+
     axios.get("http://localhost:4000/dashboard/"+this.props.match.params.id,
       {headers: {
-        "x-auth-token": curr_state.passport
+        "x-auth-token": this.props.location.state.passport
       }}
     )
     .then((res) => {
@@ -46,7 +47,8 @@ componentDidMount(){
       this.setState({
         isAuth: true,
         username: res.data.name,
-        movies: movie_comps
+        movies: movie_comps,
+        val: 1
       })
     })
     .catch((err) => {
@@ -59,18 +61,33 @@ componentDidMount(){
 
   render(){
     return(
-      <div className="dashboard-main">
-        {this.state.isAuth ?
-          <div>
-            <h3>Welcome to the dashboard {this.state.username}</h3>
-            <div className="movie-shelf">{this.state.movies}</div>
+      <div>
+        {this.state.isAuth
+        ?
+          <div className="dashboard-main">
+            <Navbar
+              userId={this.props.match.params.id}
+              passport={this.props.location.state.passport}
+              >
+            </Navbar>
+            <div className="slide-row">
+              <div className="slide-item">1</div>
+              <div className="slide-item">2</div>
+              <div className="slide-item">3</div>
+              <div className="slide-item">4</div>
+              <div className="slide-item">5</div>
+              <div className="slide-item">6</div>
+              <div className="slide-item">7</div>
+            </div>
           </div>
         :
-          <Error
-            status={this.state.error_status}
-            error={this.state.error_response}
-            >
-          </Error>
+          <div className="dashboard-main">
+            <Error
+              status={this.state.error_status}
+              error={this.state.error_response}
+              >
+            </Error>
+          </div>
         }
       </div>
     );

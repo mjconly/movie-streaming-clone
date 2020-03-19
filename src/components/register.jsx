@@ -83,7 +83,7 @@ class Register extends Component{
 
   render(){
     return(
-      <div>
+      <div className="body">
         {this.state.success ?
           <Redirect
             to={{

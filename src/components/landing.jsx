@@ -99,6 +99,7 @@ class Landing extends Component{
 
   render(){
     return(
+      <div className="body">
         <div className="landing-container">
           {this.state.isAuth ?
             <Redirect
@@ -159,9 +160,13 @@ class Landing extends Component{
             </form>
         }
         </div>
+      </div>
     );
   };
 }
+
+
+
 
 
 

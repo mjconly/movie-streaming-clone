@@ -1,7 +1,17 @@
+$duration = 450ms
+$tileWidth = 250px
+$tileHeight = ($tileWidth / (16/9))
+$iconSize = 50px
+$growFactor = 1.5
+
+$moveLeft = -($tileWidth * ($growFactor - 1) / 2)
+$moveRight = $tileWidth * ($growFactor - 1)
+
 .dashboard-main{
   width: 100vw;
   height: 100vh;
   background: rgb(0,0,0);
+  overflow: hidden;
 }
 
 /* Error messages from server  */
@@ -28,8 +38,27 @@
 
 /* movie shelf display */
 
-.movie-shelf{
+.slide-row{
   display:flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  padding: 0 55px;
+}
+
+.slide-row:hover .slide-item {
+   transform: translateX(-25%);
+}
+
+.slide-item{
+  background: green;
+  flex: 0 0 19.7%;
+  text-align: center;
+  margin: 0 2px;
+  transition: transform 300ms ease 100ms;
+}
+
+.slide-item:hover ~ .slide-item {
+   transform: translateX(25%);
+}
+
+.slide-item:hover {
+  transform: scale(1.5) !important;
 }
