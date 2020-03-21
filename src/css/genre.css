@@ -11,17 +11,38 @@
 
 
 .movie-container{
-  display: flex;
-  flex-wrap: wrap;
+  display: inline-flex;
   align-items: center;
   justify-content: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .movie-item{
   margin: 5px;
+  transition: transform 300ms ease 100ms;
+}
+
+.movie-item:hover{
+  cursor:pointer;
 }
 
 .genre-header{
   color:white;
   opacity: .3;
+}
+
+/* movie shelf display */
+
+.movie-container:hover .movie-item {
+   transform: translateX(-25%);
+}
+
+
+.movie-item:hover ~ .movie-item {
+   transform: translateX(25%);
+}
+
+.movie-item:hover {
+  transform: scale(1.25) !important;
 }

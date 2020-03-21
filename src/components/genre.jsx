@@ -8,7 +8,7 @@ class Genre extends Component{
 
     this.state={
       genre: "",
-      genre_movies: [],
+      movie_rows: [],
     }
 
     this.updateState = this.updateState.bind(this);
@@ -32,7 +32,7 @@ class Genre extends Component{
 
     const movies = this.props.location.state.movies.map((movie, idx) => {
       let found = movie.genres.find(el => el === genre);
-      if (found){
+      if (found !== undefined){
         return (
           <div
             key={idx}
@@ -46,13 +46,40 @@ class Genre extends Component{
         </div>
         )
       }
+      else{
+        return null;
+      }
     })
+
+    const rows = [];
+    let currRow = [];
+    const limit = 4;
+    let curr = 0;
+
+    for (let m = 0; m < movies.length; m++){
+        if (curr < limit && movies[m] !== null){
+          currRow.push(movies[m]);
+          curr += 1;
+        }
+        else if (movies[m] !== null){
+          rows.push(currRow);
+          currRow = [];
+          currRow.push(movies[m]);
+          curr = 1;
+        }
+    }
+
+    if (currRow.length !== 0){
+      rows.push(currRow);
+    }
 
     this.setState({
       genre: genre,
-      genre_movies: movies
+      movie_rows: rows
     })
   }
+
+
 
   render(){
     return(
@@ -67,9 +94,19 @@ class Genre extends Component{
         <div className="main-genre-content">
           <div className="col-sm-8 m-auto">
             <h3 className="genre-header">{this.props.match.params.genre}</h3>
-            <div className="movie-container">
-              {this.state.genre_movies}
-            </div>
+            {
+              this.state.movie_rows.map((row, idx) => {
+                return (
+                  <div className="movie-container" key={idx}>
+                    {row.map((r, i) => {
+                      return (
+                        r
+                      )
+                    })}
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
       </div>
