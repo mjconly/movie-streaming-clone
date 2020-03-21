@@ -6,7 +6,9 @@ class Navbar extends Component {
     super(props)
 
     this.state = {
-      genres: null
+      genres: null,
+      movies: null,
+      passport: null,
     }
 
   }
@@ -33,7 +35,9 @@ class Navbar extends Component {
       )
     })
     this.setState({
-      genres: genres
+      genres: genres,
+      movies: this.props.movies,
+      passport: this.props.passport,
     })
   }
 
@@ -52,7 +56,9 @@ class Navbar extends Component {
             <Link to={{
                 pathname:`/dashboard/${this.props.userId}`,
                 state: {
-                  passport: this.props.passport
+                  passport: this.state.passport,
+                  movies: this.state.movies,
+                  genres: this.props.genres,
                 }
               }}
               className="nav-link">Home</Link>
@@ -81,7 +87,9 @@ class Navbar extends Component {
             <Link to={{
                 pathname: `/dashboard/${this.props.userId}/search`,
                 state: {
-                  passport: this.props.passport
+                  movies: this.state.movies,
+                  passport: this.state.passport,
+                  genres: this.props.genres
                 }
               }}
               className="nav-link">Search</Link>

@@ -9,6 +9,10 @@
   text-align: center;
 }
 
+.row-container{
+  display: inline-flex;
+  flex-direction: column;
+}
 
 .movie-container{
   display: inline-flex;
@@ -35,14 +39,14 @@
 /* movie shelf display */
 
 .movie-container:hover .movie-item {
-   transform: translateX(-25%);
+   transform: translateX(-10%);
 }
 
 
 .movie-item:hover ~ .movie-item {
-   transform: translateX(25%);
+   transform: translateX(10%);
 }
 
 .movie-item:hover {
-  transform: scale(1.25) !important;
+  transform: scale(1.1) !important;
 }

@@ -94,6 +94,7 @@ class Genre extends Component{
         <div className="main-genre-content">
           <div className="col-sm-8 m-auto">
             <h3 className="genre-header">{this.props.match.params.genre}</h3>
+            <div className="row-container">
             {
               this.state.movie_rows.map((row, idx) => {
                 return (
@@ -107,6 +108,7 @@ class Genre extends Component{
                 )
               })
             }
+          </div>
           </div>
         </div>
       </div>

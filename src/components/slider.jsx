@@ -4,8 +4,6 @@ import "./slider.scss";
 
 function Slider(props){
   let sliderArr = props.movies;
-  let low = 5;
-  let high = sliderArr.length;
 
   const [x, setX] = useState(0);
 

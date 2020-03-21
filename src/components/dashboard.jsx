@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./navbar";
 import Slider from "./slider";
 import axios from "axios";
-import "../css/dashboard.css";
+import "../css/dashboard.scss";
 
 function Error(props){
   return(
@@ -26,7 +26,8 @@ class Dashboard extends Component{
       banner: [
         "https://hdqwalls.com/wallpapers/halloween-2018-movie-5k-z6.jpg",
         "https://hdwallsource.com/img/2016/7/interstellar-movie-poster-widescreen-wallpaper-49235-50899-hd-wallpapers.jpg",
-        "https://wallpapersite.com/images/pages/pic_w/2757.jpg"
+        "https://wallpapersite.com/images/pages/pic_w/2757.jpg",
+        "https://cdnb.artstation.com/p/assets/images/images/009/539/799/large/salome-tolordava-scene-002.jpg?1519579118",
       ],
       x: 0,
       genres: null
@@ -73,7 +74,7 @@ componentDidMount(){
         genres: genres
       })
 
-      this.interval = setInterval(() => this.slideBanner(), 10000)
+      this.interval = setInterval(() => this.slideBanner(), 6000)
 
     })
     .catch((err) => {
@@ -109,7 +110,7 @@ componentDidMount(){
                   <div className="banner"
                         key={idx}
                         style={{
-                         backgroundImage: `url(${poster})`,
+                         backgroundImage: `url("${poster}")`,
                          transform: `translateX(${this.state.x}%)`
                        }}
                     >
