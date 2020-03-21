@@ -28,7 +28,9 @@ class Dashboard extends Component{
         "https://hdwallsource.com/img/2016/7/interstellar-movie-poster-widescreen-wallpaper-49235-50899-hd-wallpapers.jpg",
         "https://wallpapersite.com/images/pages/pic_w/2757.jpg"
       ],
-      x: 0
+      x: 0,
+      genres: null
+
     }
 
     this.slideBanner = this.slideBanner.bind(this);
@@ -48,6 +50,7 @@ componentDidMount(){
     .then((res) => {
       const movies = res.data.movies;
       const feature = []
+      const genres = new Set();
 
       let i = 0;
       while (i < 6){
@@ -56,11 +59,18 @@ componentDidMount(){
         i++;
       }
 
+      for(let movie of movies){
+        for (let genre of movie.genres){
+          genres.add(genre);
+        }
+      }
+
       this.setState({
         isAuth: true,
         username: res.data.name,
         movies: movies,
         feature: feature,
+        genres: genres
       })
 
       this.interval = setInterval(() => this.slideBanner(), 10000)
@@ -89,13 +99,16 @@ componentDidMount(){
             <Navbar
               userId={this.props.match.params.id}
               passport={this.props.location.state.passport}
+              genres={this.state.genres}
+              movies={this.state.movies}
               >
             </Navbar>
             <div className="banner-box">
               {this.state.banner.map((poster, idx) => {
                 return (
                   <div className="banner"
-                       style={{
+                        key={idx}
+                        style={{
                          backgroundImage: `url(${poster})`,
                          transform: `translateX(${this.state.x}%)`
                        }}
@@ -114,7 +127,9 @@ componentDidMount(){
                 <div className="feature">
                   {this.state.feature.map((movie, idx) => {
                     return (
-                      <div className="f_img" >
+                      <div
+                        key={idx}
+                        className="f_img" >
                       <img
                         key={idx}
                         src={movie.poster}

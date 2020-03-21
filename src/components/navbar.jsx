@@ -4,12 +4,45 @@ import { Link } from "react-router-dom";
 class Navbar extends Component {
   constructor(props){
     super(props)
+
+    this.state = {
+      genres: null
+    }
+
   }
+
+  componentDidMount(){
+    const genres = [];
+    let genreSet = this.props.genres;
+    genreSet.forEach((genre, idx) => {
+      genres.push (
+        <Link
+          key={idx}
+          className="dropdown-item"
+          to={{
+            pathname: `/dashboard/${this.props.userId}/${genre}`,
+            state: {
+              movies: this.props.movies,
+              genres: genreSet,
+              passport: this.props.passport
+            }
+          }}
+          >
+          {genre}
+        </Link>
+      )
+    })
+    this.setState({
+      genres: genres
+    })
+  }
+
+
   render(){
     return(
       <nav
         className="navbar fixed-top navbar-dark bg-primary navbar-expand-sm">
-        <Link to="/" className="navbar-brand">Movie Time</Link>
+        <div className="navbar-brand">Movie Time</div>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHam" aria-controls="navbarHam" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -36,10 +69,12 @@ class Navbar extends Component {
               >
               Genres
             </div>
-            <div className="dropdown-menu" aria-labelledby="navbar-dropdown">
-              <Link className="dropdown-item" to="/dashboard/:id/action">Action</Link>
-              <Link className="dropdown-item" to="/dashboard/:id/action">Horror</Link>
-              <Link className="dropdown-item" to="/dashboard/:id/action">Sci-Fi</Link>
+            <div className="dropdown-menu"
+              style={{
+                background: `rgba(0,0,0,0.5)`,
+              }}
+              aria-labelledby="navbar-dropdown">
+              {this.state.genres}
             </div>
           </li>
           <li className="navbar-item">
