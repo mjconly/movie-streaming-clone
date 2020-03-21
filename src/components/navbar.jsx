@@ -7,7 +7,8 @@ class Navbar extends Component {
   }
   render(){
     return(
-      <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
+      <nav
+        className="navbar fixed-top navbar-dark bg-primary navbar-expand-sm">
         <Link to="/" className="navbar-brand">Movie Time</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHam" aria-controls="navbarHam" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>

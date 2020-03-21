@@ -112,7 +112,8 @@ class Landing extends Component{
               }}
             />
             :
-            <form className="form-container" onSubmit={this.onSubmit}>
+            <form className="form-container"
+              onSubmit={this.onSubmit}>
               <div className="form-border">
                 <h4 className="app-title">Movie Time</h4>
                   <div>
