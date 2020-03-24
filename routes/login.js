@@ -12,6 +12,8 @@ let User = require("../models/User");
 router.post("/signin", (req, res) => {
   const {email, password} = req.body;
 
+  console.log("pressed");
+
   User.findOne({email: email}, (err, user) => {
     if (err) throw err;
 
