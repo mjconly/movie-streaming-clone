@@ -30,7 +30,8 @@ class Dashboard extends Component{
         "https://cdnb.artstation.com/p/assets/images/images/009/539/799/large/salome-tolordava-scene-002.jpg?1519579118",
       ],
       x: 0,
-      genres: null
+      genres: null,
+      actors: null,
 
     }
 
@@ -52,12 +53,16 @@ componentDidMount(){
       const movies = res.data.movies;
       const feature = []
       const genres = new Set();
+      const actors = res.data.actors;
+      const actorMap = new Map();
 
       let i = 0;
       while (i < 6){
         let r = Math.floor(Math.random() * 97);
-        feature.push(movies[r]);
-        i++;
+        if (feature.indexOf(r) == -1){
+          feature.push(movies[r]);
+          i++;
+        }
       }
 
       for(let movie of movies){
@@ -66,12 +71,17 @@ componentDidMount(){
         }
       }
 
+      for(let actor of actors){
+        actorMap.set(actor._id, actor);
+      }
+
       this.setState({
         isAuth: true,
         username: res.data.name,
         movies: movies,
         feature: feature,
-        genres: genres
+        genres: genres,
+        actors: actorMap
       })
 
       this.interval = setInterval(() => this.slideBanner(), 6000)
@@ -102,6 +112,7 @@ componentDidMount(){
               passport={this.props.location.state.passport}
               genres={this.state.genres}
               movies={this.state.movies}
+              actors={this.state.actors}
               >
             </Navbar>
             <div className="banner-box">

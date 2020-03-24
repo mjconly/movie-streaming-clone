@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "./navbar"
+import Poster from "./poster"
 import "../css/genre.css"
+
 
 class Genre extends Component{
   constructor(props){
@@ -34,16 +36,12 @@ class Genre extends Component{
       let found = movie.genres.find(el => el === genre);
       if (found !== undefined){
         return (
-          <div
+          <Poster
             key={idx}
-            className="movie-item"
-           >
-          <img
-            key={idx}
-            src={movie.poster}
-            alt={idx}>
-          </img>
-        </div>
+            movie={movie}
+            alt={idx}
+            actors={this.props.location.state.actors}
+            ></Poster>
         )
       }
       else{
@@ -89,6 +87,7 @@ class Genre extends Component{
           passport={this.props.location.state.passport}
           genres={this.props.location.state.genres}
           movies={this.props.location.state.movies}
+          actors={this.props.location.state.actors}
           >
         </Navbar>
         <div className="main-genre-content">

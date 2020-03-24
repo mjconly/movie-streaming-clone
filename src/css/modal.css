@@ -1,0 +1,125 @@
+.modal-close-btn{
+  cursor: pointer;
+  color: white;
+  position: absolute;
+  transform: scale(2.5);
+  top: 5px;
+  right: 20px;
+}
+
+
+.movie-info{
+  /* border:red solid 1px; */
+  display:flex;
+}
+
+.movie-meta{
+  /* border: blue solid 1px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.movie-image{
+  margin: 5px 10px 5px 0px;
+}
+
+.movie-credits{
+  display:flex;
+  flex-direction: column;
+  /* border: green solid 1px; */
+  margin: 5px 0px 5px 5px;
+  flex-wrap: wrap;
+}
+
+.modal-title{
+  color: white;
+  opacity: .8;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.creditFlex{
+  display: flex;
+  flex-direction: column;
+}
+
+.credit{
+  color: white;
+  opacity: .8;
+  margin-top: 2px;
+}
+
+.stub{
+  color:white;
+  opacity: .5;
+  margin-top: 2px;
+}
+
+.movie-description{
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px 5px 0px;
+  text-align: center;
+}
+
+.actor_img{
+
+}
+
+.movie-cast-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -5px
+}
+
+.cast-item{
+  text-align: center;
+  transform: scale(.7);
+  margin-top: -40px;
+}
+
+.actor-name{
+  font-size: 1.25em;
+}
+
+.movie-cast{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px){
+   .creditFlex{
+     align-items: center;
+     text-align: center;
+   }
+   .movie-meta{
+     justify-content: center;
+   }
+ }
+
+@media only screen and (min-width: 480px) and (max-width: 767px){
+  .creditFlex{
+    align-items: center;
+    text-align: center;
+  }
+  .movie-meta{
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+  .movie-meta{
+    justify-content: center;
+  }
+ }
+
+@media only screen and (min-width: 992px){
+  .movie-meta{
+    max-width: 40%;
+    justify-content: center;
+  }
+ }

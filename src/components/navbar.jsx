@@ -9,6 +9,7 @@ class Navbar extends Component {
       genres: null,
       movies: null,
       passport: null,
+      actors: null,
     }
 
   }
@@ -26,7 +27,8 @@ class Navbar extends Component {
             state: {
               movies: this.props.movies,
               genres: genreSet,
-              passport: this.props.passport
+              passport: this.props.passport,
+              actors: this.props.actors
             }
           }}
           >
@@ -38,6 +40,7 @@ class Navbar extends Component {
       genres: genres,
       movies: this.props.movies,
       passport: this.props.passport,
+      actors: this.props.actors,
     })
   }
 
@@ -59,6 +62,7 @@ class Navbar extends Component {
                   passport: this.state.passport,
                   movies: this.state.movies,
                   genres: this.props.genres,
+                  actors: this.props.actors,
                 }
               }}
               className="nav-link">Home</Link>
@@ -89,7 +93,8 @@ class Navbar extends Component {
                 state: {
                   movies: this.state.movies,
                   passport: this.state.passport,
-                  genres: this.props.genres
+                  genres: this.props.genres,
+                  actors: this.props.actors,
                 }
               }}
               className="nav-link">Search</Link>
