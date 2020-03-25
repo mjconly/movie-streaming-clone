@@ -41,6 +41,8 @@ class Genre extends Component{
             movie={movie}
             alt={idx}
             actors={this.props.location.state.actors}
+            userId={this.props.match.params.id}
+            passport={this.props.location.state.passport}
             ></Poster>
         )
       }

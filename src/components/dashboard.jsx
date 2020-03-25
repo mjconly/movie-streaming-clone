@@ -42,7 +42,6 @@ componentDidMount(){
     document.body.style.backgroundColor = "black";
     document.body.style.backgroundImage = "none";
 
-    console.log(document.getElementById("carouselSlides"))
 
     axios.get("http://localhost:4000/dashboard/"+this.props.match.params.id,
       {headers: {
