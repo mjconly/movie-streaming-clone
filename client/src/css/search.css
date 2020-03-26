@@ -1,0 +1,27 @@
+.search-main{
+  width: 100%;
+  height: 100%;
+  background: rgb(0,0,0);
+}
+
+.search-header{
+  color:white;
+  opacity: .3;
+  margin-bottom: 20px;
+}
+
+.main-search-container{
+  margin-top: 100px;
+  text-align: center;
+}
+
+.result-box{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search-result{
+  margin: 5px;
+}

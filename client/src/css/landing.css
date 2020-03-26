@@ -1,0 +1,160 @@
+/* landing main */
+.landing-main{
+  width: 100vw;
+  height: 100vh;
+}
+
+/* landing container */
+.body{
+  width: 100vw;
+  height: 100vh;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../images/felix-mooneeram-unsplash.jpg");
+  position: relative;
+}
+
+/* login form */
+.landing-container, .register-container{
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+}
+
+.form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.label-a{
+  color: white;
+  opacity: .5;
+}
+
+.app-title{
+  color: white;
+  opacity: 1;
+  font-family: 'Revalia', monospace, sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.reg-title{
+  color: white;
+  opacity: 1;
+  font-family: sans-serif;
+  font-size: 1em;
+  text-align: center;
+}
+
+.login-field, .register-field{
+  width: 250px;
+}
+
+.input-a{
+  background-color: rgba(0, 0, 0, .5) !important;
+  color: white !important;
+  border:solid white 1px;
+}
+
+.input-a:focus{
+  /* box-shadow: 0 3px 3px #c04df9 !important;
+  border-color: white !important; */
+  border-color: white !important;
+  box-shadow: none !important;
+  background-color: rgba(0, 0, 0, .5) !important;
+}
+
+.input-a:active{
+  border-color: solid 1px white !important;
+  box-shadow: none !important;
+  background-color: rgba(0, 0, 0, .5) !important;
+}
+
+
+.input-a:empty{
+  border-color: solid 1px white !important;
+  box-shadow: none !important;
+}
+
+.form-border{
+  padding: 40px;
+}
+
+.form-submit{
+  width: 250px;
+  height: 45px;
+  border-radius: 5px 5px 5px 5px;
+  background-color: rgba(0,0,0, 0);
+  opacity: .7;
+  color: white;
+  font-family: sans-serif;
+  font-size: 1.25em;
+  margin-top: 10px;
+}
+
+.form-submit:hover{
+  /* box-shadow: 0 3px 3px #c04df9 !important; */
+  border-color: white !important;
+  opacity: .8;
+  background-color: rgba(0,0,0,.5);
+  cursor: pointer;
+}
+
+.form-submit:active{
+  transform: translateY(2px);
+  outline:none;
+}
+
+
+
+.option{
+  display:inline-block;
+  margin-bottom: 5px;
+  opacity: .5 !important;
+  color:white;
+}
+
+.option-link{
+  color:white !important;
+  opacity: .9 !important;
+  cursor: pointer;
+}
+
+/* error alert box */
+.close-btn{
+  cursor: pointer;
+  color: white;
+  position: relative;
+  bottom: 5px;
+  right: 5px;
+}
+
+.error-response{
+  color: white;
+  opacity: .5;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  color:#f3ea5f;
+}
+
+.success-response{
+  color: white;
+  opacity: .5;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  color:#bcff7c;
+}
+
+.error-box, .success-box{
+  display: flex;
+  flex-direction: row;
+  background: rgba(255,255,255,.1);
+  width: 250px;
+  border-radius: 5px;
+  justify-content: space-between;
+}

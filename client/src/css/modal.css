@@ -1,0 +1,298 @@
+.modal-close-btn{
+  cursor: pointer;
+  color: white;
+  position: absolute;
+  transform: scale(2.5);
+  top: 5px;
+  right: 20px;
+}
+
+
+.movie-info{
+  /* border:red solid 1px; */
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-meta{
+  /* border: blue solid 1px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.movie-image{
+  margin: 5px 10px 5px 0px;
+}
+
+.movie-credits{
+  display:flex;
+  flex-direction: column;
+  /* border: green solid 1px; */
+  margin: 5px 0px 5px 5px;
+  flex-wrap: wrap;
+}
+
+.overall-score{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.score-number{
+  color: white;
+  font-size: 1.5em;
+  background-color: rgba(43, 209, 252, .7) !important;
+}
+
+.score-text{
+  color:white;
+  text-align: center;
+  font-size: .75em;
+}
+
+.modal-title{
+  color: white;
+  opacity: .8;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.creditFlex{
+  display: flex;
+  flex-direction: column;
+}
+
+.credit{
+  color: white;
+  opacity: .8;
+  margin-top: 2px;
+}
+
+.stub{
+  color:white;
+  opacity: .5;
+  margin-top: 2px;
+}
+
+.movie-description{
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px 5px 0px;
+  text-align: center;
+}
+
+.actor_img{
+}
+
+.movie-cast-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -5px
+}
+
+.cast-item{
+  text-align: center;
+  transform: scale(.7);
+  margin-top: -40px;
+}
+
+.actor-name{
+  font-size: 1.25em;
+}
+
+.movie-cast{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+.movie-review{
+  /* border:red 1px solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75vh;
+}
+
+.review-form{
+  /* border: teal solid 1px; */
+}
+
+.review-title{
+  margin-top: 10px;
+}
+
+.user-review-form{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 30%;
+
+  /* border: purple solid 1px; */
+}
+
+#text-area{
+  resize: none;
+  background-color: rgba(0,0,0,.7);
+  color: white;
+  border-top: solid 1px rgba(255,255,255, .1);
+  border-bottom: solid 1px rgba(255,255,255, .1);
+}
+
+#text-area:empty{
+  box-shadow: none !important;
+}
+
+
+.star-container{
+  display:inline-flex;
+  flex-direction: row;
+}
+
+.star-container-review{
+  display:inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.bi-star-fill{
+  /* fill: rgba(255,255,255, .3) !important; */
+  cursor: pointer;
+  padding: 0px 1px 0px 1px;
+}
+
+.star-container > .bi-star-fill:hover{
+  fill: #2bd1fc;
+  transform: translateY(-5px);
+}
+
+/* .star-container:hover .bi-star-fill{
+  fill: #2bd1fc !important;
+}
+
+.bi-star-fill:hover ~ .bi-star-fill{
+  fill: rgba(255,255,255, .3) !important;
+} */
+
+
+.btn-outline-info{
+  opacity: .8 !important;
+}
+
+.btn-outline-info:hover{
+  opacity: .8 !important;
+}
+
+
+.user-reviews{
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* border: orange 1px solid; */
+}
+
+
+.review {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: rgba(0,0,0,.7);
+  color: white;
+  border-top: solid 1px rgba(255,255,255, .1);
+  margin: 5px 0px 5px 0px;
+}
+
+.user-review-box{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-height: 40%;
+  /* border: green 1px solid; */
+}
+
+.reviewed-by-on{
+
+}
+
+.review-description{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px){
+   .creditFlex{
+     align-items: center;
+     text-align: center;
+   }
+   .movie-meta{
+     justify-content: center;
+   }
+   .movie-review{
+    .align-items: center;
+     width: 90%
+   }
+
+ }
+
+@media only screen and (min-width: 480px) and (max-width: 767px){
+  .creditFlex{
+    align-items: center;
+    text-align: center;
+  }
+  .movie-meta{
+    justify-content: center;
+  }
+  .movie-review{
+   align-items: center;
+   width: 90%
+  }
+
+  .user-review-form{
+    min-width: 40%;
+    max-height: 40%;
+  }
+
+  .user-review-box{
+    min-width: 40%
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+  .movie-meta{
+    justify-content: center;
+  }
+  .movie-review{
+   min-width: 70%
+  }
+
+  .user-review-form{
+    min-width: 60%;
+    max-height: 40%;
+  }
+
+  .user-review-box{
+    min-width: 70%
+  }
+ }
+
+@media only screen and (min-width: 992px){
+  .movie-meta{
+    width: 40%;
+    justify-content: center;
+  }
+
+  .movie-review{
+    min-width: 60%;
+  }
+ }
