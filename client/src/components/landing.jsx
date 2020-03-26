@@ -56,7 +56,7 @@ class Landing extends Component{
 
     const {email, password} = this.state;
 
-    axios.post("http://localhost:4000/login/signin", {email, password})
+    axios.post("/login/signin", {email, password})
       .then((res) => {
         this.setState({
           isAuth: true,
