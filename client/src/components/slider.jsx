@@ -24,7 +24,7 @@ function Slider(props){
   //hover item scale and transition all left or right of it
   const mouseIn = (e) => {
     const parent = e.target.parentElement.parentElement.children;
-    console.log(e.target.parentElement.parentElement)
+
     let left = true;
     for (let child = 0; child < parent.length - 2; child++){
       if (parent[child].children[0] === e.target){
@@ -45,7 +45,7 @@ function Slider(props){
     const parent = e.target.parentElement.parentElement.children;
     let left = true;
     for (let child = 0; child < parent.length - 2; child++){
-      if (parent[child] == e.target){
+      if (parent[child] === e.target){
         left = false;
       }
       else if (left){

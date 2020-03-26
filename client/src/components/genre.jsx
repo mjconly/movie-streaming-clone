@@ -24,7 +24,7 @@ class Genre extends Component{
   }
 
   componentDidUpdate(prevProps){
-    if (prevProps.match.params.genre != this.props.match.params.genre){
+    if (prevProps.match.params.genre !== this.props.match.params.genre){
         this.updateState();
     }
   }

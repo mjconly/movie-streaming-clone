@@ -59,7 +59,7 @@ componentDidMount(){
       let i = 0;
       while (i < 6){
         let r = Math.floor(Math.random() * 97);
-        if (feature.indexOf(r) == -1){
+        if (feature.indexOf(r) === -1){
           feature.push(movies[r]);
           i++;
         }

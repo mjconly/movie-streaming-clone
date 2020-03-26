@@ -124,7 +124,7 @@ class Poster extends Component{
       const actor = this.state.actors.get(id);
         return (
           <div key={id} className="cast-item">
-            <img className="actor_img" src={actor.profile_pic}></img>
+            <img className="actor_img" src={actor.profile_pic} alt={actor.name}></img>
             <p  className="stub actor-name">{actor.name}</p>
           </div>
         );
