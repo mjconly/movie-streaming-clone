@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
-import "../css/search.css"
+import Poster from "./poster";
+import "../css/search.css";
 
 class Search extends Component{
   constructor(props){
@@ -13,7 +14,8 @@ class Search extends Component{
       userId: null,
       query: "",
       results: [],
-      movie_title_map: null
+      movie_title_map: null,
+      actors: [],
     }
 
     this.onChangeQuery = this.onChangeQuery.bind(this);
@@ -35,7 +37,8 @@ class Search extends Component{
       genres: this.props.location.state.genres,
       movies: this.props.location.state.movies,
       userId: this.props.match.params.id,
-      movie_title_map: movie_title_map
+      movie_title_map: movie_title_map,
+      actors: this.props.location.state.actors
     })
   }
 
@@ -43,9 +46,18 @@ class Search extends Component{
     const q = e.target.value.split(" ").join("").toLowerCase();
     const matched = [];
     if (q !== ""){
-      this.state.movie_title_map.forEach((value, key) => {
+      this.state.movie_title_map.forEach((movie, key) => {
         if (key.indexOf(q) > -1){
-          matched.push(value.poster)
+          matched.push(
+            <Poster
+              key={key}
+              movie={movie}
+              alt={key}
+              actors={this.props.location.state.actors}
+              userId={this.props.match.params.id}
+              passport={this.props.location.state.passport}
+              ></Poster>
+          )
         }
       })
     }
@@ -65,6 +77,7 @@ class Search extends Component{
           passport={this.props.location.state.passport}
           genres={this.props.location.state.genres}
           movies={this.props.location.state.movies}
+          actors={this.props.location.state.actors}
           >
         </Navbar>
         <div className="main-search-container">
@@ -81,16 +94,18 @@ class Search extends Component{
                   </input>
                 </div>
               </form>
-              <h4 className="search-header">{this.state.query}</h4>
-              <div className="results-box">
-                {this.state.results.map((poster, idx) => {
+              <h4 className="search-header">
+                {this.state.results.length === 0 ?
+                  ( this.state.query.length === 0 ? "" : "No results found" )
+                  : this.state.query
+                }
+              </h4>
+              <div className="result-box">
+                {this.state.results.map((movie, idx) => {
                   return (
-                    <img
-                      className="search-result"
-                      key={idx}
-                      src={poster}
-                      alt={idx}>
-                    </img>
+                    <div className="search-result">
+                      {movie}
+                    </div>
                   )
                 })}
               </div>

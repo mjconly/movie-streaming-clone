@@ -43,6 +43,12 @@ class Poster extends Component{
     })
   }
 
+  // componentWillUnmount() {
+  //     // you need to unbind the same listener that was binded.
+  //     window.removeEventListener('onClick', this.handleOpenModal, false);
+  //     window.removeEventListener('onClick', this.handleCloseModal, false);
+  // }
+
   onSubmit(e){
     e.preventDefault();
 
@@ -193,22 +199,32 @@ class Poster extends Component{
 
   render(){
     return(
-      <div className="movie-item">
-        <div
-          key={this.props.idx}
-          onClick={this.handleOpenModal}
-         >
-        <img
-          key={this.props.idx}
-          src={this.props.movie.poster}
-          alt={this.props.idx}>
-        </img>
-      </div>
+      <div className={this.props.altName !== "slide" ? "movie-item" : "slide"}>
+        {this.props.altName !== "undefined"
+          ?
+          <img
+            onMouseOver={this.props.onMouseOver}
+            onMouseOut={this.props.onMouseOut}
+            className={this.props.altName}
+            style={this.props.style}
+            onClick={this.handleOpenModal}
+            key={this.props.idx}
+            src={this.props.movie.poster}
+            alt={this.props.idx}>
+          </img>
+          :
+          <img
+            onClick={this.handleOpenModal}
+            key={this.props.idx}
+            src={this.props.movie.poster}
+            alt={this.props.idx}>
+          </img>
+        }
       {this.state.movie != null
       ?
         <ReactModal
           isOpen={this.state.showModal}
-          contentLabel={"label"}
+          contentLabel={this.props.movie.title}
           onRequestClose={this.handleCloseModal}
           ariaHideApp={false}
           style={modal_style}

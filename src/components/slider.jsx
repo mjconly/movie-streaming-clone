@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Poster from "./poster"
 import "./slider.scss";
 
 
@@ -22,17 +23,18 @@ function Slider(props){
 
   //hover item scale and transition all left or right of it
   const mouseIn = (e) => {
-    const parent = e.target.parentElement.children;
+    const parent = e.target.parentElement.parentElement.children;
+    console.log(e.target.parentElement.parentElement)
     let left = true;
     for (let child = 0; child < parent.length - 2; child++){
-      if (parent[child] == e.target){
+      if (parent[child].children[0] === e.target){
         left = false;
       }
       else if (left){
-        parent[child].style.transform = `translateX(${x - 25}%)`;
+        parent[child].children[0].style.transform = `translateX(${x - 25}%)`;
       }
       else{
-        parent[child].style.transform = `translateX(${x + 25}%)`;
+        parent[child].children[0].style.transform = `translateX(${x + 25}%)`;
       }
     }
     e.target.style.transform = `translateX(${x}%) scale(1.5)`
@@ -40,17 +42,17 @@ function Slider(props){
 
   //restore scale and transition of items left and right
   const mouseOut = (e) => {
-    const parent = e.target.parentElement.children;
+    const parent = e.target.parentElement.parentElement.children;
     let left = true;
     for (let child = 0; child < parent.length - 2; child++){
       if (parent[child] == e.target){
         left = false;
       }
       else if (left){
-        parent[child].style.transform = `translateX(${x}%)`;
+        parent[child].children[0].style.transform = `translateX(${x}%)`;
       }
       else{
-        parent[child].style.transform = `translateX(${x}%)`;
+        parent[child].children[0].style.transform = `translateX(${x}%)`;
       }
     }
     e.target.style.transform = `translateX(${x}%)`
@@ -61,19 +63,22 @@ function Slider(props){
   return(
     <div className="slider-box">
       <div className="slider">
-        {sliderArr.map((item, index) => {
+        {sliderArr.map((movie, index) => {
           return(
-            <img
+            <Poster
               key={index}
-              className="slide"
+              altName="slide"
               onMouseOver={mouseIn}
               onMouseOut={mouseOut}
-              src={item.poster} alt={item.title}
+              movie={movie}
+              actors={props.actors}
+              passport={props.passport}
+              userId={props.userId}
               style={{
                 transform: `translateX(${x}%)`
               }}
               >
-            </img>
+            </Poster>
           )
         })}
         <svg

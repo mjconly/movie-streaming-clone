@@ -171,6 +171,11 @@
   padding: 0px 1px 0px 1px;
 }
 
+.star-container > .bi-star-fill:hover{
+  fill: #2bd1fc;
+  transform: translateY(-5px);
+}
+
 /* .star-container:hover .bi-star-fill{
   fill: #2bd1fc !important;
 }

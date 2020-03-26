@@ -3,6 +3,7 @@ import Navbar from "./navbar";
 import Slider from "./slider";
 import axios from "axios";
 import "../css/dashboard.scss";
+import "./slider.scss"
 
 function Error(props){
   return(
@@ -131,7 +132,13 @@ componentDidMount(){
             <div className="main-content">
               <div>
                 <h4 className="header" style={{marginLeft:"25px", marginTop:"15px"}}>Trending</h4>
-                <Slider movies={this.state.movies.slice(0,32)}></Slider>
+                <Slider
+                  movies={this.state.movies.slice(0,32)}
+                  actors={this.state.actors}
+                  userId={this.props.match.params.id}
+                  passport={this.props.location.state.passport}
+                  >
+                </Slider>
               </div>
               <div>
                 <h4 className="header" style={{marginLeft:"25px", marginTop:"15px"}}>Featured</h4>
@@ -153,11 +160,23 @@ componentDidMount(){
               </div>
               <div>
                 <h4 className="header" style={{marginLeft:"25px", marginTop:"15px"}}>Recently Added</h4>
-                <Slider movies={this.state.movies.slice(32,64)}></Slider>
+                <Slider
+                  movies={this.state.movies.slice(32,64)}
+                  actors={this.state.actors}
+                  userId={this.props.match.params.id}
+                  passport={this.props.location.state.passport}
+                  >
+                </Slider>
               </div>
               <div>
                 <h4 className="header" style={{marginLeft:"25px", marginTop:"15px"}}>Popular</h4>
-                <Slider movies={this.state.movies.slice(64,96)}></Slider>
+                <Slider
+                  movies={this.state.movies.slice(64,96)}
+                  actors={this.state.actors}
+                  userId={this.props.match.params.id}
+                  passport={this.props.location.state.passport}
+                  >
+                </Slider>
               </div>
               <div>
                 <footer className="foot">Michael Conly 2020</footer>
