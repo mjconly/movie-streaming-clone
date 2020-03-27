@@ -47,7 +47,7 @@ componentDidMount(){
 
     axios.get("/dashboard/"+this.props.match.params.id,
       {headers: {
-        "x-auth-token": this.props.location.state.passport
+        "x-auth-token": this.props.location.state.passport || this.state.passport
       }}
     )
     .then((res) => {
