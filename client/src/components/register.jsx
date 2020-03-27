@@ -70,7 +70,7 @@ class Register extends Component{
 
     const {username, email, password, confirm_password} = this.state;
 
-    axios.post("/register/add",
+    axios.post("http://localhost:4000/register/add",
     {username, email, password, confirm_password}
     )
       .then((res) => {this.setState({success: true})})

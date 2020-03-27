@@ -5,6 +5,7 @@ import axios from "axios";
 import "../css/dashboard.scss";
 import "./slider.scss"
 
+
 function Error(props){
   return(
     <div className="error-box-dash col-md-6 m-auto">
@@ -44,10 +45,11 @@ componentDidMount(){
     document.body.style.backgroundColor = "black";
     document.body.style.backgroundImage = "none";
 
+    axios.defaults.headers.common['x-auth-token'] = this.props.location.state.passport;
 
-    axios.get("/dashboard/"+this.props.match.params.id,
+    axios.get("http://localhost:4000/dashboard/"+this.props.match.params.id,
       {headers: {
-        "x-auth-token": this.props.location.state.passport || this.state.passport
+        "x-auth-token": this.props.location.state.passport
       }}
     )
     .then((res) => {
