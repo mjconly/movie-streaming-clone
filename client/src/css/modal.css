@@ -94,17 +94,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -5px
+  margin-top: -5px;
 }
 
 .cast-item{
   text-align: center;
   transform: scale(.7);
   margin-top: -40px;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 
 .actor-name{
   font-size: 1.25em;
+  color: white;
+  opacity: 1;
 }
 
 .movie-cast{
@@ -273,7 +277,7 @@
     justify-content: center;
   }
   .movie-review{
-   min-width: 70%
+   min-width: 60%;
   }
 
   .user-review-form{
@@ -288,11 +292,11 @@
 
 @media only screen and (min-width: 992px){
   .movie-meta{
-    width: 40%;
+    width: 55%;
     justify-content: center;
   }
 
   .movie-review{
-    min-width: 60%;
+    min-width: 45%;
   }
  }

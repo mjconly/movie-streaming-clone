@@ -45,7 +45,7 @@ componentDidMount(){
     document.body.style.backgroundImage = "none";
 
 
-    axios.get("http://localhost:4000/dashboard/"+this.props.match.params.id,
+    axios.get("/dashboard/"+this.props.match.params.id,
       {headers: {
         "x-auth-token": this.props.location.state.passport
       }}
