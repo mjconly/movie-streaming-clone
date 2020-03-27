@@ -5,7 +5,7 @@ const auth = (req, res, next) => {
   const token = req.header("x-auth-token");
 
   if (!token){
-    return res.status(401).json("Unauthorized");
+    return res.status(401).json("Unauthorized from me");
   }
 
   try{

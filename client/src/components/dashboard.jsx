@@ -49,6 +49,9 @@ componentDidMount(){
       passport = localStorage.get("jwt");
     }
 
+    console.log("PASSPORT DID MOUNT")
+    console.log(passpor);
+
     axios.get("/dashboard/"+this.props.match.params.id,
       {headers: {
         "x-auth-token": this.props.location.state.passport
@@ -101,8 +104,12 @@ componentDidMount(){
     });
   }
 
-  componentWillUnMount(){
+  componentWillUnmount(){
+    console.log("unmounting");
+    console.log(this.props.location.state.passport);
     localStorage.set("jwt", this.props.location.state.passport)
+    console.log("FROM LOCAL");
+    console.log(localStorage.get("jwt"));
   }
 
   slideBanner(){
