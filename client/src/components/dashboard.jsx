@@ -51,6 +51,9 @@ componentDidMount(){
 
     console.log("PASSPORT DID MOUNT")
     console.log(auth_token);
+    localStorage.set("jwt", this.props.location.state.passport);
+    console.log("FROM STORAGE");
+    console.log(localStorage.get("jwt"));
 
     axios.get("/dashboard/"+this.props.match.params.id,
       {headers: {
@@ -110,6 +113,7 @@ componentDidMount(){
     localStorage.set("jwt", this.props.location.state.passport)
     console.log("FROM LOCAL");
     console.log(localStorage.get("jwt"));
+    axios.defaults.headers.common['x-auth-token'] = localStorage.get("jwt");
   }
 
   slideBanner(){
