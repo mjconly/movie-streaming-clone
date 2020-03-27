@@ -19,7 +19,7 @@ class Dashboard extends Component{
     super(props)
     this.state = {
       isAuth: false,
-      error_status: null,
+      error_status: "",
       error_response: "",
       username: "",
       movies: [],
@@ -33,6 +33,7 @@ class Dashboard extends Component{
       x: 0,
       genres: null,
       actors: null,
+      passport: ""
 
     }
 
@@ -44,7 +45,7 @@ componentDidMount(){
     document.body.style.backgroundImage = "none";
 
 
-    axios.get("/dashboard/"+this.props.match.params.id,
+    axios.get("http://localhost:4000/dashboard/"+this.props.match.params.id,
       {headers: {
         "x-auth-token": this.props.location.state.passport
       }}
@@ -57,7 +58,7 @@ componentDidMount(){
       const actorMap = new Map();
 
       let i = 0;
-      while (i < 6){
+      while (i < 10){
         let r = Math.floor(Math.random() * 97);
         if (feature.indexOf(r) === -1){
           feature.push(movies[r]);
@@ -81,7 +82,8 @@ componentDidMount(){
         movies: movies,
         feature: feature,
         genres: genres,
-        actors: actorMap
+        actors: actorMap,
+        passport: this.props.location.state.passport
       })
 
       this.interval = setInterval(() => this.slideBanner(), 6000)
@@ -89,8 +91,8 @@ componentDidMount(){
     })
     .catch((err) => {
       this.setState({
-        error_status: err.response.status,
-        error_response: err.response.data,
+        error_status: err,
+        error_response: err
       })
     });
   }
@@ -109,7 +111,7 @@ componentDidMount(){
           <div className="dashboard-main">
             <Navbar
               userId={this.props.match.params.id}
-              passport={this.props.location.state.passport}
+              passport={this.props.location.state.passport || this.state.passport}
               genres={this.state.genres}
               movies={this.state.movies}
               actors={this.state.actors}
@@ -136,26 +138,19 @@ componentDidMount(){
                   movies={this.state.movies.slice(0,32)}
                   actors={this.state.actors}
                   userId={this.props.match.params.id}
-                  passport={this.props.location.state.passport}
+                  passport={this.props.location.state.passport || this.state.passport}
                   >
                 </Slider>
               </div>
               <div>
                 <h4 className="header" style={{marginLeft:"25px", marginTop:"15px"}}>Featured</h4>
                 <div className="feature">
-                  {this.state.feature.map((movie, idx) => {
-                    return (
-                      <div
-                        key={idx}
-                        className="f_img" >
-                      <img
-                        key={idx}
-                        src={movie.poster}
-                        alt={idx}>
-                      </img>
-                    </div>
-                  )
-                  })}
+                  <Slider
+                    movies={this.state.feature}
+                    actors={this.state.actors}
+                    userId={this.props.match.params.id}
+                    passport={this.props.location.state.passport || this.state.passport}
+                    ></Slider>
                 </div>
               </div>
               <div>
@@ -164,7 +159,7 @@ componentDidMount(){
                   movies={this.state.movies.slice(32,64)}
                   actors={this.state.actors}
                   userId={this.props.match.params.id}
-                  passport={this.props.location.state.passport}
+                  passport={this.props.location.state.passport || this.state.passport}
                   >
                 </Slider>
               </div>
@@ -174,7 +169,7 @@ componentDidMount(){
                   movies={this.state.movies.slice(64,96)}
                   actors={this.state.actors}
                   userId={this.props.match.params.id}
-                  passport={this.props.location.state.passport}
+                  passport={this.props.location.state.passport || this.state.passport}
                   >
                 </Slider>
               </div>

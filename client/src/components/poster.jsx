@@ -60,7 +60,7 @@ class Poster extends Component{
 
     const data = {review, rating, userId, movieId}
 
-    axios.post("/dashboard/review", data,
+    axios.post("http://localhost:4000/dashboard/review", data,
       {headers: {"x-auth-token": passport}}
     )
       .then((res) => {
@@ -80,7 +80,7 @@ class Poster extends Component{
   }
 
   handleOpenModal () {
-    axios.get(`/dashboard/${this.state.movie._id}/reviews`,
+    axios.get(`http://localhost:4000/dashboard/${this.state.movie._id}/reviews`,
       {headers: {"x-auth-token": this.props.passport}}
     )
       .then((res) => {
@@ -210,14 +210,14 @@ class Poster extends Component{
             onClick={this.handleOpenModal}
             key={this.props.idx}
             src={this.props.movie.poster}
-            alt={this.props.idx}>
+            alt={this.props.movie.title}>
           </img>
           :
           <img
             onClick={this.handleOpenModal}
             key={this.props.idx}
             src={this.props.movie.poster}
-            alt={this.props.idx}>
+            alt={this.props.movie.title}>
           </img>
         }
       {this.state.movie != null

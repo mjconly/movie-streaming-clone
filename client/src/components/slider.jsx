@@ -16,9 +16,12 @@ function Slider(props){
 
   //right transition
   const goRight = () => {
-    console.log(x);
-
-    x <= -100 * (sliderArr.length - 14) ? setX(0) : setX(x - 200);
+    if (sliderArr.length < 30){
+      x <= -100 * (sliderArr.length - 7) ? setX(0) : setX(x - 200);
+    }
+    else{
+      x <= -100 * (sliderArr.length - 10) ? setX(0) : setX(x - 200);
+    }
   }
 
   //hover item scale and transition all left or right of it
@@ -32,9 +35,11 @@ function Slider(props){
       }
       else if (left){
         parent[child].children[0].style.transform = `translateX(${x - 25}%)`;
+        parent[child].children[0].style.opacity = "0.3"
       }
       else{
         parent[child].children[0].style.transform = `translateX(${x + 25}%)`;
+        parent[child].children[0].style.opacity = "0.3"
       }
     }
     e.target.style.transform = `translateX(${x}%) scale(1.5)`
@@ -50,9 +55,11 @@ function Slider(props){
       }
       else if (left){
         parent[child].children[0].style.transform = `translateX(${x}%)`;
+        parent[child].children[0].style.opacity = "1"
       }
       else{
         parent[child].children[0].style.transform = `translateX(${x}%)`;
+        parent[child].children[0].style.opacity = "1"
       }
     }
     e.target.style.transform = `translateX(${x}%)`
