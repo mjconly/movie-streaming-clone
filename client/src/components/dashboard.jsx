@@ -35,7 +35,6 @@ class Dashboard extends Component{
       genres: null,
       actors: null,
       passport: ""
-
     }
 
     this.slideBanner = this.slideBanner.bind(this);
@@ -45,7 +44,10 @@ componentDidMount(){
     document.body.style.backgroundColor = "black";
     document.body.style.backgroundImage = "none";
 
-    axios.defaults.headers.common['x-auth-token'] = this.props.location.state.passport;
+    let passport = this.props.location.state.passport;
+    if (passport === "undefined"){
+      passport = localStorage.get("jwt");
+    }
 
     axios.get("/dashboard/"+this.props.match.params.id,
       {headers: {
@@ -97,6 +99,10 @@ componentDidMount(){
         error_response: err
       })
     });
+  }
+
+  componentWillUnMount(){
+    localStorage.set("jwt", this.props.location.state.passport)
   }
 
   slideBanner(){
