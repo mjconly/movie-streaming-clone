@@ -44,17 +44,17 @@ componentDidMount(){
     document.body.style.backgroundColor = "black";
     document.body.style.backgroundImage = "none";
 
-    let passport = this.props.location.state.passport;
-    if (passport === "undefined"){
-      passport = localStorage.get("jwt");
+    let auth_token= this.props.location.state.passport;
+    if (auth_token === "undefined"){
+      auth_token = localStorage.get("jwt");
     }
 
     console.log("PASSPORT DID MOUNT")
-    console.log(passpor);
+    console.log(auth_token);
 
     axios.get("/dashboard/"+this.props.match.params.id,
       {headers: {
-        "x-auth-token": this.props.location.state.passport
+        "x-auth-token": auth_token
       }}
     )
     .then((res) => {
