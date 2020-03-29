@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "email is required"],
     validate: {
       validator: function(v){
-        return /^[a-zA-Z0-9-_]*@{1}([a-zA-Z]*\.){1,2}[a-z]{2,}$/.test(v);
+        return /^[a-zA-Z0-9-_.]*@{1}([a-zA-Z]*\.){1,2}[a-z]{2,}$/.test(v);
       },
       message: props => `${props.value} is not a valid email`,
       isAsync: false
@@ -30,3 +30,5 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
+
+//added . to first part of email validation regex

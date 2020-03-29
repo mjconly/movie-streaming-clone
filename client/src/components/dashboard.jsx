@@ -49,11 +49,7 @@ componentDidMount(){
       auth_token = localStorage.getItem("jwt");
     }
 
-    console.log("PASSPORT DID MOUNT")
-    console.log(auth_token);
     localStorage.setItem("jwt", this.props.location.state.passport);
-    console.log("FROM STORAGE");
-    console.log(localStorage.getItem("jwt"));
 
     axios.get("/dashboard/"+this.props.match.params.id,
       {headers: {
@@ -108,11 +104,7 @@ componentDidMount(){
   }
 
   componentWillUnmount(){
-    console.log("unmounting");
-    console.log(this.props.location.state.passport);
     localStorage.setItem("jwt", this.props.location.state.passport)
-    console.log("FROM LOCAL");
-    console.log(localStorage.getItem("jwt"));
     axios.defaults.headers.common['x-auth-token'] = localStorage.getItem("jwt");
   }
 

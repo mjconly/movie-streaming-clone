@@ -8,6 +8,7 @@
 }
 
 
+
 .movie-info{
   /* border:red solid 1px; */
   display:flex;
@@ -203,7 +204,6 @@
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
-  /* border: orange 1px solid; */
 }
 
 
@@ -232,6 +232,7 @@
 .review-description{
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px){
@@ -243,8 +244,17 @@
      justify-content: center;
    }
    .movie-review{
-    .align-items: center;
-     width: 90%
+    .align-items: left;
+     width: 100%
+   }
+
+   .modal-title{
+     font-size: 1.5em;
+   }
+
+   .star-container-review > .bi-star-fill{
+     width: .9em;
+     height: .9em;
    }
 
  }
@@ -297,6 +307,6 @@
   }
 
   .movie-review{
-    min-width: 45%;
+    width: 45%;
   }
  }

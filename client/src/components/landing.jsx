@@ -40,6 +40,7 @@ class Landing extends Component{
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.onGuestClick = this.onGuestClick.bind(this);
   }
 
   componentDidMount(){
@@ -55,6 +56,25 @@ class Landing extends Component{
     e.preventDefault();
 
     const {email, password} = this.state;
+
+    axios.post("/login/signin", {email, password})
+      .then((res) => {
+        this.setState({
+          isAuth: true,
+          passport: res.data.token,
+          userId: res.data.id
+        })
+      })
+      .catch((err) => {
+        this.setState({
+          error: err.response.data
+        })
+      })
+  }
+
+  onGuestClick(){
+    const email = "Guest@gmail.com";
+    const password = "123456"
 
     axios.post("/login/signin", {email, password})
       .then((res) => {
@@ -112,6 +132,7 @@ class Landing extends Component{
               }}
             />
             :
+            <div className="form-container">
             <form className="form-container"
               onSubmit={this.onSubmit}>
               <div className="form-border">
@@ -159,6 +180,8 @@ class Landing extends Component{
                 <button type="submit" name="login" className="form-submit">Login</button>
               </div>
             </form>
+            <button name="login" className="form-submit" onClick={this.onGuestClick}>Login as Guest</button>
+          </div>
         }
         </div>
       </div>

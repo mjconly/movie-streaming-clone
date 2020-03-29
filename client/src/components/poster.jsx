@@ -232,7 +232,9 @@ class Poster extends Component{
           <div className="modal-close-btn">
             <div onClick={this.handleCloseModal}>&times;</div>
           </div>
-          <h4 className="modal-title">{this.state.movie.title}</h4>
+          <div className="title-box">
+            <h4 className="modal-title">{this.state.movie.title}</h4>
+          </div>
           <div className="movie-info">
             <div className="movie-meta">
               <img
