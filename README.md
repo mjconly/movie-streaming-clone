@@ -13,7 +13,7 @@ React client can than use the Node backend api to make requests and retrieve mov
 information. 
 
 ## View
-To view the application click [here](movie-streaming-clone.herokuapp.com/)
+To view the application click [here](https://movie-streaming-clone.herokuapp.com/)
 
 ## Requirements
 1. Node
