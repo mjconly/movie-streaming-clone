@@ -6,14 +6,14 @@ an account and view popular titles from their home page. Movies can be sorted by
 genre or searched by title. Each movie when selected opens a modal window allowing
 the user to view relevant movie information and post reviews.
 
-##Details
+## Details
 A python script was created to scrape imdb for popular movie titles and write
 this data to a csv file. This file was than used to populate a mongo database. The
 React client can than use the Node backend api to make requests and retrieve movie
 information. 
 
 ## View
-To view the application click [here](movie-streaming-clone.herokuapp.com/)
+To view the application click [here](https://movie-streaming-clone.herokuapp.com/)
 
 ## Requirements
 1. Node
